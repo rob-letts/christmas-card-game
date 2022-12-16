@@ -1,0 +1,220 @@
+{
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/essential"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "vue",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "object-property-newline": [
+      "error"
+    ],
+    "no-inline-comments": [
+      "error"
+    ],
+    "camelcase": [
+      "error"
+    ],
+    "prefer-const": [
+      "error"
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "backtick"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "no-duplicate-imports": [
+      "error"
+    ],
+    "no-var": [
+      "error"
+    ],
+    "array-bracket-spacing": [
+      "error"
+    ],
+    "arrow-spacing": [
+      "error"
+    ],
+    "comma-dangle": [
+      "error"
+    ],
+    "space-before-function-paren": [
+      "error"
+    ],
+    "no-trailing-spaces": [
+      "error"
+    ],
+    "prefer-template": [
+      "error"
+    ],
+    "vue/no-multiple-template-root": [
+      "off"
+    ],
+    "vue/multi-word-component-names": [
+      "off"
+    ],
+    "vue/html-closing-bracket-newline": [
+      "error",
+      {
+        "singleline": "never",
+        "multiline": "always"
+      }
+    ],
+    "vue/this-in-template": 2,
+    "vue/max-attributes-per-line": [
+      "error",
+      {
+        "singleline": {
+          "max": 1
+        },
+        "multiline": {
+          "max": 1
+        }
+      }
+    ],
+    "vue/first-attribute-linebreak": [
+      "error",
+      {
+        "singleline": "ignore",
+        "multiline": "below"
+      }
+    ],
+    "vue/v-on-style": [
+      "error",
+      "shorthand"
+    ],
+    "vue/v-bind-style": [
+      "error",
+      "shorthand"
+    ],
+    "vue/no-spaces-around-equal-signs-in-attribute": [
+      "error"
+    ],
+    "vue/html-quotes": [
+      "error",
+      "double"
+    ],
+    "vue/component-tags-order": [
+      "error",
+      {
+        "order": [
+          "script[setup]",
+          "template",
+          "style"
+        ]
+      }
+    ],
+    "vue/html-closing-bracket-spacing": [
+      "error",
+      {
+        "startTag": "never",
+        "endTag": "never",
+        "selfClosingTag": "always"
+      }
+    ],
+    "vue/no-multi-spaces": [
+      "error",
+      {
+        "ignoreProperties": false
+      }
+    ],
+    "vue/prop-name-casing": [
+      "error",
+      "camelCase"
+    ],
+    "vue/require-prop-types": 2,
+    "vue/component-options-name-casing": [
+      "error",
+      "PascalCase"
+    ],
+    "vue/attribute-hyphenation": [
+      "error",
+      "never"
+    ],
+    "vue/block-tag-newline": [
+      "error",
+      {
+        "singleline": "always",
+        "multiline": "always",
+        "maxEmptyLines": 0,
+        "blocks": {
+          "template": {
+            "singleline": "always",
+            "multiline": "always",
+            "maxEmptyLines": 0
+          },
+          "script": {
+            "singleline": "always",
+            "multiline": "always",
+            "maxEmptyLines": 0
+          },
+          "my-block": {
+            "singleline": "always",
+            "multiline": "always",
+            "maxEmptyLines": 0
+          }
+        }
+      }
+    ],
+    "vue/html-indent": [
+      "error",
+      2,
+      {
+        "attribute": 1,
+        "baseIndent": 1,
+        "closeBracket": 0,
+        "alignAttributesVertically": true,
+        "ignores": []
+      }
+    ],
+    "vue/html-self-closing": [
+      "error",
+      {
+        "html": {
+          "void": "always",
+          "normal": "always",
+          "component": "always"
+        },
+        "svg": "always",
+        "math": "always"
+      }
+    ],
+    "vue/require-prop-type-constructor": 0
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.vue"
+      ],
+      "rules": {
+        "vue/no-reserved-component-names": "off"
+      }
+    }
+  ]
+}
