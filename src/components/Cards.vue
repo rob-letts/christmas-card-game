@@ -17,12 +17,36 @@ while (avatars.length) {
 
 <template>
   <main>
-    <img
-      v-for="avatar, index in randomAvatars"
-      :key="index"
-      :src="avatar"
-      alt=""
-    />
+    <button v-for="avatar, index in randomAvatars">
+      <img
+        :key="index"
+        :src="avatar"
+        alt=""
+      />
+    </button>
   </main>
 </template>
 
+<style scoped>
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+main {
+  width: 100vw;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+button {
+  flex-basis: 20%;
+}
+</style>
