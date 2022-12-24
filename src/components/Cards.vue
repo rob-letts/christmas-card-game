@@ -64,9 +64,11 @@ function selectCard (avatar: Avatar) {
         currentSelection.value = undefined;
       } else {
         setTimeout(() => {
-          currentSelection.value.selected = false;
-          avatar.selected = false;
-          currentSelection.value = undefined;
+          if (currentSelection.value) {
+            currentSelection.value.selected = false;
+            avatar.selected = false;
+            currentSelection.value = undefined;
+          }
         }, 1500);
       }
     } else {
