@@ -1,8 +1,10 @@
-<script lang="ts"></script>
+<script setup lang="ts">
+defineEmits([`restart`]);
+</script>
 
 <template>
   <footer>
-    <button>
+    <button @click="$emit(`restart`)">
       Start Again!
     </button>
   </footer>
@@ -17,7 +19,6 @@ footer {
 
 button {
   border: none;
-  background: none;
   cursor: pointer;
   font-size: 2rem;
   font-weight: bold;
@@ -25,5 +26,14 @@ button {
   background: #000;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  translate: 0 5px;
+}
+
+button:active {
+  scale: 0.95;
 }
 </style>
