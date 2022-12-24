@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import RestartButton from "@/components/RestartButton.vue";
 import ana from '@/assets/ana.png';
 import jack from '@/assets/jack.png';
@@ -7,38 +7,57 @@ import elsa from '@/assets/elsa.png';
 import spidey from '@/assets/spidey.png';
 import batman from '@/assets/batman.png';
 import olaf from '@/assets/olaf.png';
+import ethan from '@/assets/ethan.png';
+import bobby from '@/assets/bobby.png';
+import frankie from '@/assets/frankie.png';
+import charlotte from '@/assets/charlotte.png';
 
 type Avatar = { name: string, src: string, selected: boolean, pair: boolean };
-
-const win = computed(() => {
-  return cards.value.every(card => card.pair);
-});
+const avatars = [ana, jack, elsa, spidey, batman, ethan, bobby, frankie, charlotte];
 
 const cards = ref<Avatar[]>([]);
-const selectedCards = computed(() => {
-  return cards.value.filter(card => card.selected).map(card => card.name);
+const currentSelection = ref<Avatar>();
+const displayWinMessage = ref<boolean>(false);
+
+const winCondition = computed(() => cards.value.every(card => card.pair));
+const selectedCards = computed(() => cards.value.filter(card => card.selected).map(card => card.name));
+
+watch(winCondition, shesTotallyWon => {
+  if (shesTotallyWon) {
+    setTimeout(() => {
+      displayWinMessage.value = true;
+    }, 1000);
+  }
 });
 
-const currentSelection = ref<Avatar>();
+setupCards(avatars);
 
 function setupCards (avatars: string[]) {
   const localAvatars = [...avatars];
-  cards.value = [];
+  const randomAvatars = [];
+  const totalPairs = 5;
 
-  while (localAvatars.length) {
+  for (let i = 0; i < totalPairs; i++) {
     const numberOutOfAHat = Math.floor(Math.random() * localAvatars.length);
     const theChosenOne = localAvatars.splice(numberOutOfAHat, 1)[0];
+    randomAvatars.push(theChosenOne);
+  }
 
-    cards.value.push({
-      name: theChosenOne.toString().replace(/\/src\/assets\//, ``).replace(/\.png/, ``),
-      src: theChosenOne,
+  const avatarPairs = [...randomAvatars, ...randomAvatars].sort(() => Math.random() - 0.5);
+
+  cards.value = avatarPairs.map(item => {
+    return {
+      name: item.toString().replace(/\/src\/assets\//, ``).replace(/\.png/, ``),
+      src: item,
       selected: false,
       pair: false
-    });
-  }
+    };
+  });
 }
 
 function resetCards (avatars: string[]) {
+  displayWinMessage.value = false;
+
   cards.value.forEach(card => {
     card.selected = false;
     card.pair = false;
@@ -51,9 +70,7 @@ function selectCard (avatar: Avatar) {
   if (selectedCards.value.length < 2) {
     avatar.selected = true;
 
-    // there is another card selected
     if (currentSelection.value) {
-      // and its a match
       if (currentSelection.value.name === avatar.name) {
         currentSelection.value.pair = true;
         currentSelection.value.selected = false;
@@ -76,15 +93,12 @@ function selectCard (avatar: Avatar) {
     }
   }
 }
-
-const avatars = [ana, jack, elsa, spidey, batman, ana, jack, elsa, spidey, batman];
-setupCards(avatars);
 </script>
 
 <template>
   <main>
     <div
-      v-if="win"
+      v-if="displayWinMessage"
       class="win-message"
     >
       <p>OMG RIVER YOU WON YAY!!!!</p>
@@ -142,11 +156,21 @@ button {
   border-radius: 10%;
   border: black 3px solid;
   cursor: pointer;
-  flex-basis: 20%;
+  flex-basis: 22%;
   position: relative;
   transition: all 1s;
   transform-style: preserve-3d;
   rotate: y 180deg;
+}
+
+p {
+  text-align: center;
+}
+
+#olaf {
+  max-height: 250px;
+  border-radius: 8px;
+  border: 4px solid gold;
 }
 
 .selected {
@@ -165,11 +189,5 @@ button {
   gap: 2rem;
   flex-direction: column;
   font-size: 1.5rem;
-}
-
-#olaf {
-  max-height: 250px;
-  border-radius: 8px;
-  border: 4px solid gold;
 }
 </style>
