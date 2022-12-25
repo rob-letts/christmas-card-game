@@ -13,5 +13,9 @@ header {
   place-content: center;
   text-align: center;
 }
+
+h1 {
+  color: red;
+}
 </style>
 

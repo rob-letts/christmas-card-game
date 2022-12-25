@@ -22,8 +22,8 @@ button {
   cursor: pointer;
   font-size: 2rem;
   font-weight: bold;
-  color: #fff;
-  background: #000;
+  color: red;
+  background: gold;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
