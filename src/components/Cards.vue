@@ -96,46 +96,43 @@ function selectCard (avatar: Avatar) {
 </script>
 
 <template>
-  <main>
-    <div
-      v-if="displayWinMessage"
-      class="win-message"
+  <div
+    v-if="displayWinMessage"
+    class="win-message"
+  >
+    <p>OMG RIVER YOU WON YAY!!!!</p>
+    <img
+      :src="olaf"
+      alt="some avatar"
+      id="olaf"
+    />
+  </div>
+  <main v-else>
+    <button
+      v-for="avatar, index in cards"
+      @click="selectCard(avatar)"
+      :class="[{ selected: avatar.selected }, { pair: avatar.pair }]"
+      :key="index"
     >
-      <p>OMG RIVER YOU WON YAY!!!!</p>
       <img
-        :src="olaf"
+        :src="avatar.src"
         alt="some avatar"
-        id="olaf"
       />
-    </div>
-    <template v-else>
-      <button
-        v-for="avatar, index in cards"
-        @click="selectCard(avatar)"
-        :class="[{ selected: avatar.selected }, { pair: avatar.pair }]"
-        :key="index"
-      >
-        <img
-          :src="avatar.src"
-          alt="some avatar"
-        />
-      </button>
-    </template>
+    </button>
   </main>
   <RestartButton @click="resetCards(avatars)" />
 </template>
 
 <style scoped>
 main {
-  perspective: 500px;
+  perspective: 1000px;
   width: 100vw;
   padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 230px 230px;
   gap: 1rem;
-  flex-wrap: wrap;
-  max-width: 750px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -153,7 +150,7 @@ button {
     5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
   padding: 1rem;
   background: red;
-  border-radius: 10%;
+  border-radius: 1rem;
   border: black 3px solid;
   cursor: pointer;
   flex-basis: 22%;
@@ -168,14 +165,17 @@ p {
 }
 
 #olaf {
-  max-height: 250px;
+  max-height: 50vh;
   border-radius: 8px;
   border: 4px solid gold;
+  max-width: 50vw;
+  margin: 0 auto;
 }
 
 .selected {
   rotate: y 0deg;
   background: whitesmoke;
+  pointer-events: none;
 }
 
 .pair {
